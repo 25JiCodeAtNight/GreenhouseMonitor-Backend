@@ -11,12 +11,19 @@ import java.io.IOException;
 public class HTTP {
     private final OkHttpClient client = new OkHttpClient();
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    private final String url;
+
+    /*** Initial HTTP
+     * @param url The url of request
+     */
+    public HTTP(String url) {
+        this.url = url;
+    }
 
     /*** HTTP GET
-     * @param url Request URL
      * @return Respond body, null for error
      */
-    public String get(String url) {
+    public String get() {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -31,11 +38,10 @@ public class HTTP {
     }
 
     /*** HTTP POST
-     * @param url Request URL
      * @param data Request data
      * @return Respond body, null for error
      */
-    public String post(String url, String data) {
+    public String post(String data) {
         RequestBody requestBody = RequestBody.create(JSON, data);
         Request request = new Request.Builder()
                 .url(url)
