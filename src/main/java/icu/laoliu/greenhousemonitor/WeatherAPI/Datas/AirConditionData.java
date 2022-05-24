@@ -15,7 +15,7 @@ public class AirConditionData {
         public String fxDate;
         public int aqi;
         public int level;
-        public String catagory;
+        public String category;
         public String primary;
     }
 

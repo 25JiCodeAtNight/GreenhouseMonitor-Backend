@@ -9,7 +9,7 @@ public class MinuteRainData {
     public String updateTime;
     public String fxLink;
     public String summary;
-    public Minutely[] minutel;
+    public Minutely[] minute;
     public Refer refer;
 
     public class Minutely {
