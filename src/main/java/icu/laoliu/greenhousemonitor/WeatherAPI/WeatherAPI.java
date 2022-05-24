@@ -17,7 +17,7 @@ public class WeatherAPI {
 
     /***
      * Initial WeatherAPI
-     * 
+     *
      * @param KEY      QWeather Private KEY
      * @param location Request location
      */
@@ -28,7 +28,7 @@ public class WeatherAPI {
 
     /***
      * Get Realtime Weather
-     * 
+     *
      * @return Current weather data
      */
     public RealtimeWeatherData getRealtimeWeather() {
@@ -41,6 +41,10 @@ public class WeatherAPI {
         return data;
     }
 
+    /*** Get Disaster Warning Data
+     *
+     * @return Disaster warning data, object DisasterWarningData
+     */
     public DisasterWarningData getDisasterWarning() {
         String url = "https://devapi.qweather.com/v7/warning/now?key=" + KEY + "&location=" + location + "&lang=zh";
         HTTP http = new HTTP(url);
@@ -50,6 +54,10 @@ public class WeatherAPI {
         return data;
     }
 
+    /*** Get Minute Rain Data
+     *
+     * @return Minute rain data, object MinuteRainData
+     */
     public MinuteRainData getMinuteRain() {
         String url = "https://devapi.qweather.com/v7/minutely/5m?key=" + KEY + "&location=" + location + "&lang=zh";
         HTTP http = new HTTP(url);
@@ -59,6 +67,10 @@ public class WeatherAPI {
         return data;
     }
 
+    /*** Get Air Condition Data
+     *
+     * @return Air condition data, object AirConditionData
+     */
     public AirConditionData getAirCondition() {
         String url = "https://devapi.qweather.com/v7/air/5d?key=" + KEY + "&location=" + location + "&lang=zh";
         HTTP http = new HTTP(url);
@@ -68,6 +80,10 @@ public class WeatherAPI {
         return data;
     }
 
+    /*** Get Sunrise And Sunset Data
+     *
+     * @return Sunrise and sunset data, object SunriseAndSunsetData
+     */
     public SunriseAndSunsetData getSunriseAndSunset() {
         SimpleDateFormat dateFormatter = new SimpleDateFormat();
         dateFormatter.applyPattern("yyyyMMdd");
