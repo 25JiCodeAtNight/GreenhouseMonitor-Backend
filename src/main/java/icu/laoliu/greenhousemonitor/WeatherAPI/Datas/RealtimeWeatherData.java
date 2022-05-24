@@ -1,3 +1,8 @@
+/*** Data of getRealtimeWeather API
+ * @author Lao-Liu233
+ */
+
+
 package icu.laoliu.greenhousemonitor.WeatherAPI.Datas;
 
 public class RealtimeWeatherData {
