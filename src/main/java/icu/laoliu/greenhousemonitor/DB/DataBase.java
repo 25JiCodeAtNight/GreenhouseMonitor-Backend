@@ -2,7 +2,7 @@ package icu.laoliu.greenhousemonitor.DB;
 
 import java.sql.*;
 
-    public class InterConnectionAPI {
+    public class DataBase {
         public final String DATA_BASE_URL = "jdbc:mysql://IPADDRESS/ghmonitor?useUnicode = true & characterEncoding = utf-8 & useSSL = false";
         public final String DATA_BASE_USERNAME = "USERNAME";
         public final String DATA_BASE_PASSWORD = "PASSWORD";
@@ -10,7 +10,7 @@ import java.sql.*;
         public Connection connection;
 
 
-        public InterConnectionAPI() {                       //无参构造InterConnectionAPI对象
+        public DataBase() {                       //无参构造InterConnectionAPI对象
             try {
                 connection = DriverManager.getConnection(DATA_BASE_URL, DATA_BASE_USERNAME, DATA_BASE_PASSWORD);
             } catch (SQLException e) {
