@@ -21,12 +21,12 @@ public class getAllGreenhouses {
     String sql;
 
     @GetMapping("/v1/user/getAllGreenhouses")
-    public String Send() {
+    public String Send(String userID) {
 //        GetGRespond respond=new GetGRespond();
 //        DataBase dataBase =new DataBase();
 //        dataBase.setSQLString("SELECT user.name,greenhouse.greenhouse_id FROM user,greenhouse WHERE user.user_id=greenhouse.user_id");
 //        ResultSet resultSet= dataBase.haveReturnExecute();
-        sql = "SELECT name,greenhouse_id FROM user,greenhouse WHERE user.user_id=greenhouse.user_id";
+        sql = "SELECT greenhouse_name,greenhouse_id FROM user,greenhouse WHERE user.user_id=greenhouse.user_id AND user.user_id=" + "'" +userID + "'";
         List<Map<String, Object>> res = jdbcTemplate.queryForList(sql);
 
         GetGRespond respond = new GetGRespond();
@@ -34,7 +34,7 @@ public class getAllGreenhouses {
         for (int i = 0; i != res.size(); i++) {
             GetGRecord tmp = new GetGRecord();
             tmp.greenhouseID = (String) res.get(i).get("greenhouse_id");
-            tmp.name = (String) res.get(i).get("name");
+            tmp.greenhouseName = (String) res.get(i).get("greenhouse_name");
             respond.responds[i] = tmp;
         }
         String dataJson = new Gson().toJson(respond);
