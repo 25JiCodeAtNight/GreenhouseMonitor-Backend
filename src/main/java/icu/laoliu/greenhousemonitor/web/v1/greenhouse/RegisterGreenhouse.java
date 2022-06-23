@@ -23,36 +23,43 @@ public class RegisterGreenhouse {
     JdbcTemplate jdbcTemplate;
     String sql;
     @GetMapping("v1/greenhouse/register")
-    public void  index(@RequestBody String respondDataString) {
+    public String  index(@RequestBody String respondDataString) {
         // 插入大棚
         RegisterRespondData respondData=new Gson().fromJson(respondDataString,RegisterRespondData.class);
-        sql="select greenhouse_id from greenhouse";
-        UUID uuid=new UUID(20,1);
+        sql="select * from greenhouse";
+        String uuid=UUID.randomUUID().toString().replaceAll("-","");
         int key=0;
         while(key==0)
         {
-        while(true)
-        {
+            while(true)
+            {
                 List<Map<String,Object>> result=jdbcTemplate.queryForList(sql);
-                ListIterator listIterator=result.listIterator();
-                if (!listIterator.hasNext()) break;
-                String s1=listIterator.next().toString();
-                if(uuid.equals(s1))
-                {
-                    UUID temp=new UUID(20,1);
-                    uuid=temp;
-                    key=0;
-                    break;
-                }
-                else
+                if(result.isEmpty())
                 {
                     key=1;
+                    break;
                 }
+                for(int i=0;i<result.size();i++)
+                {
+                    String s1= (String) result.get(i).get("greenhouse_id");
+                    if(uuid.equals(s1))
+                    {
+                        String temp=UUID.randomUUID().toString().replaceAll("-","");
+                        uuid=temp;
+                        key=0;
+                        break;
+                    }
+                    else
+                    {
+                        key=1;
+                    }
+                }
+                if(key==1)
+                    break;
+            }
         }
-        }
-
-        String sql2="insert into greenhouse values ("+uuid+","+respondData.name+","+respondData.position.latitude+","+respondData.position.longitude+","+respondData.userId+")";
-        int result1=jdbcTemplate.update(sql2);
+        int result1=jdbcTemplate.update("insert into greenhouse values ('"+uuid+"','"+respondData.name+"',"+respondData.position.latitude+","+respondData.position.longitude+","+respondData.userId+")");
+        return uuid;
     }
 
 }
