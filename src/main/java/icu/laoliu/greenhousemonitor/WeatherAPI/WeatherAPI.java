@@ -35,8 +35,8 @@ public class WeatherAPI {
         String url = "https://devapi.qweather.com/v7/weather/now?key=" + KEY + "&location=" + location
                 + "&lang=zh&unit=m";
         HTTP http = new HTTP(url);
-        RealtimeWeatherData data;
         Gson gson = new Gson();
+        RealtimeWeatherData data;
         data = gson.fromJson(http.get(), RealtimeWeatherData.class);
         return data;
     }
