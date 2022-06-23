@@ -23,9 +23,9 @@ public class RegisterGreenhouse {
     JdbcTemplate jdbcTemplate;
     String sql;
     @GetMapping("v1/greenhouse/register")
-    public void  index(@RequestBody String respondData1) {
+    public void  index(@RequestBody String respondDataString) {
         // 插入大棚
-        RegisterRespondData respondData=new Gson().fromJson(respondData1,RegisterRespondData.class);
+        RegisterRespondData respondData=new Gson().fromJson(respondDataString,RegisterRespondData.class);
         sql="select greenhouse_id from greenhouse";
         UUID uuid=new UUID(20,1);
         int key=0;
