@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-public class WarningGreenhouse {
+public class warning {
     @Autowired
     JdbcTemplate jdbcTemplate;
     String sql;
