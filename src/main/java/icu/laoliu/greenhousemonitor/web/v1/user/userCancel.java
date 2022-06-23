@@ -1,6 +1,5 @@
 package icu.laoliu.greenhousemonitor.web.v1.user;
 
-import icu.laoliu.greenhousemonitor.DB.DataBase;
 import icu.laoliu.greenhousemonitor.web.v1.user.data.CancelRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,11 +18,11 @@ Respond:
 
  */
 @RestController
-public class cancelUser {
+public class userCancel {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    @GetMapping("/v1/user/cancel")
+    @GetMapping("/v1/user/userCancel")
     public void Get(@RequestBody CancelRequest request) {
         jdbcTemplate.update("DELETE FROM user WHERE open_id=" + request.openID);
     }
