@@ -31,8 +31,6 @@ public class RegisterGreenhouse {
         int key=0;
         while(key==0)
         {
-            while(true)
-            {
                 List<Map<String,Object>> result=jdbcTemplate.queryForList(sql);
                 if(result.isEmpty())
                 {
@@ -54,9 +52,6 @@ public class RegisterGreenhouse {
                         key=1;
                     }
                 }
-                if(key==1)
-                    break;
-            }
         }
         int result1=jdbcTemplate.update("insert into greenhouse values ('"+uuid+"','"+respondData.name+"',"+respondData.position.latitude+","+respondData.position.longitude+","+respondData.userId+")");
         return uuid;
