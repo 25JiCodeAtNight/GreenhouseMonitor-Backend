@@ -35,12 +35,12 @@ public class register {
 
     }
 
-    @GetMapping("/v1/user/register")
+    /*@GetMapping("/v1/user/register")
     public String Send() {
         RegisterRespond respond = new RegisterRespond();
         respond.userID = UID;
         String dataJson = new Gson().toJson(respond);
         return dataJson;
-    }
+    }*/
 
 }
