@@ -13,8 +13,8 @@ import java.sql.SQLException;
 
 @RestController
 public class status {
-    @GetMapping("/v1/greenhouse/status?greenhouseid=[string]")
-    public String index(String greenhouseID) {
+    @GetMapping("v1/greenhouse/status")
+    public String index(String greenhouseid) {
         // 查询数据库，获得对应大棚的信息
         DataBase dataBase = new DataBase();
         dataBase.setSQLString("SELECT latitude,longitude,greenhouse_name FROM greenhouse WHERE greenhouse_id=" + greenhouseID);
@@ -30,7 +30,7 @@ public class status {
         }
 
         //创建WeatherAPI类
-        WeatherAPI weatherAPI = new WeatherAPI("a69e5d82b8854aeaa71506c60413f45f", latitude + "," + longitude);
+        WeatherAPI weatherAPI = new WeatherAPI("TOKEN", latitude + "," + longitude);
         RealtimeWeatherData realtimeWeatherData = weatherAPI.getRealtimeWeather();
         float humitmp = realtimeWeatherData.now.humidity;
         float temptmp = realtimeWeatherData.now.temp;

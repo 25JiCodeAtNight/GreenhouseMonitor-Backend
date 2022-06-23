@@ -13,7 +13,7 @@ import java.util.UUID;
 @RestController
 public class register {
     public UUID uuid = new UUID(20, 1);
-    @GetMapping("/v1/sensor/register")
+    @GetMapping("v1/sensor/register")
     public void receive(@RequestBody RegisterRequestData registerRequestData) {
         DataBase dataBase = new DataBase();
         int key = 0;
@@ -42,7 +42,7 @@ public class register {
         dataBase.noReturnExecute();
     }
 
-    @GetMapping("/v1/sensor/register")
+    @GetMapping("v1/sensor/register")
     public String send(){
         RegisterRespondData registerRespondData = new RegisterRespondData();
         registerRespondData.sensorID = uuid.toString();

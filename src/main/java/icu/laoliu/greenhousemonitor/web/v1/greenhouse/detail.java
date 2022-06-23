@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 @RestController
 public class detail {
-    @GetMapping("/v1/greenhouse/detail")
+    @GetMapping("v1/greenhouse/detail")
     public String index(String greenhouseID) {
         // 查询数据库，获得对应大棚的信息
         DataBase dataBase = new DataBase();

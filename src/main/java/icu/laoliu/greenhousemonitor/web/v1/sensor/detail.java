@@ -11,9 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class detail {
-    @GetMapping("/v1/sensor/detail?sensorid=[int]")
+    @GetMapping("v1/sensor/detail")
     public String index(String sensorID) {
-        // 查询数据库，获得对应大棚的信息
+        // 查询数据库，获得对应大传感器信息
         DataBase dataBase = new DataBase();
         dataBase.setSQLString("SELECT greenhouse_id FROM sensor WHERE sensor_id=" + sensorID);
         ResultSet resultSet = dataBase.haveReturnExecute();

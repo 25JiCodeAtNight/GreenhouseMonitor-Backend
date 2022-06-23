@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 @RestController
 public class warning {
-    @GetMapping("/v1/greenhouse/warning")
+    @GetMapping("v1/greenhouse/warning")
     public String index(String greenhouseID) {
         DataBase dataBase = new DataBase();
         dataBase.setSQLString("SELECT latitude,longitude FROM greenhouse WHERE greenhouse_id=" + greenhouseID);
