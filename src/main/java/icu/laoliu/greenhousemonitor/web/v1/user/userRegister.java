@@ -25,13 +25,16 @@ public class userRegister {
 //        uuid = UUID.fromString(request.openID);
 //        UID = uuid.toString();
 //        sql = "" + greenhouseid;
-        String UID = UUID.randomUUID().toString().replaceAll("-", "");
-        jdbcTemplate.update("INSERT INTO user(user_id,name,open_id) VALUES('"+UID+"','" + request.name + "','" + request.openID + "')");
+    String UID = UUID.randomUUID().toString().replaceAll("-", "");
+    jdbcTemplate.update("INSERT INTO user(user_id,name,open_id) VALUES('"+UID+"','" + request.name + "','" + request.openID + "')");
+    }
+    /*@GetMapping("/v1/user/register")
+    public String Send() {
         RegisterRespond respond = new RegisterRespond();
         respond.userID = UID;
         String dataJson = new Gson().toJson(respond);
         return dataJson;
-    }
+    }*/
 
 //    @GetMapping("/v1/user/register")
 //    public String Send() {
