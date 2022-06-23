@@ -16,14 +16,14 @@ public class getArticleContent {
     JdbcTemplate jdbcTemplate;
     String sql;
 
-
     @GetMapping("/v1/knowledgeBase/getArticleContent")
-    public String getArticleContent(String articleId){
-        sql = "select article_id,article_text from article where article_id = "+articleId;
+    public String getArticleContent(String articleId) {
+        sql = "select article_id,article_text,article_name from article where article_id = " + articleId;
         List<Map<String, Object>> res = jdbcTemplate.queryForList(sql);
         getArticleContentReturn data = new getArticleContentReturn();
-        data.articleid = (String) res.get(0).get("article_id");
-        data.articleid = (String) res.get(0).get("article_text");
+        data.articleId = (String) res.get(0).get("article_id");
+        data.articleTitle = (String) res.get(0).get("article_name");
+        data.articleText = (String) res.get(0).get("article_text");
 
         String dataJson = new Gson().toJson(data);
         return dataJson;
