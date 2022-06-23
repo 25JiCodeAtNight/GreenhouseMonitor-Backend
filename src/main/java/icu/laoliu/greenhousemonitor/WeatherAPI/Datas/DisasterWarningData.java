@@ -10,14 +10,16 @@ public class DisasterWarningData {
     public int code;
     public String updateTime;
     public String fxLink;
-    public String[] warning;
+    public Warning[] warning;
     public Refer refer;
 
-    public class warning{
-        String id;
+
+
+    public class Warning{
+       public String id;
         String sender;
         String pubTime;
-        String title;
+       public String title;
         String startTime;
         String endTime;
         String status;
