@@ -22,7 +22,7 @@ public class sensorRegister {
     String sql;
 
     @GetMapping("v1/sensor/register")
-    public void receive(@RequestBody String registerRequestData) {
+    public String receive(@RequestBody String registerRequestData) {
         RegisterRequestData registerRequestData1 = new Gson().fromJson(registerRequestData, RegisterRequestData.class);
         int key = 0;
         while (key == 0) {
@@ -35,7 +35,7 @@ public class sensorRegister {
                     }
 
                     String s1 = (String) listIterator.next();
-                    if (uuid.equals(s1)) {
+                    if (uuid.toString().equals(s1)) {
                         UUID temp = new UUID(20, 1);
                         uuid = temp;
                         key = 0;
@@ -47,10 +47,7 @@ public class sensorRegister {
         }
         sql = "insert into sensor values (" + uuid + "," + registerRequestData1.name + "," + registerRequestData1.greenhouseID + ")";
         jdbcTemplate.update(sql);
-    }
 
-    @GetMapping("v1/sensor/register")
-    public String send() {
         RegisterRespondData registerRespondData = new RegisterRespondData();
         registerRespondData.sensorID = uuid.toString();
         String dataJson = new Gson().toJson(registerRespondData);
