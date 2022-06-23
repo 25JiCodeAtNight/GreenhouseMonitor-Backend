@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 @RestController
-public class register_Greenhouse {
+public class RegisterGreenhouse {
     @GetMapping("v1/greenhouse/register")
     public void  index(@RequestBody RegisterRespondData respondData) {
         // 插入大棚
