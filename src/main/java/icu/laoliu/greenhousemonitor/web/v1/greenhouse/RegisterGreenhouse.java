@@ -24,6 +24,7 @@ public class RegisterGreenhouse {
     String sql;
     @GetMapping("v1/greenhouse/register")
     public void  index(@RequestBody String respondDataString) {
+    public String  index(@RequestBody String respondDataString) {
         // 插入大棚
         RegisterRespondData respondData=new Gson().fromJson(respondDataString,RegisterRespondData.class);
         sql="select greenhouse_id from greenhouse";
@@ -38,6 +39,7 @@ public class RegisterGreenhouse {
                 if (!listIterator.hasNext()) break;
                 String s1=listIterator.next().toString();
                 if(uuid.equals(s1))
+                if(uuid.toString().equals(s1))
                 {
                     UUID temp=new UUID(20,1);
                     uuid=temp;
@@ -52,7 +54,9 @@ public class RegisterGreenhouse {
         }
 
         String sql2="insert into greenhouse values ("+uuid+","+respondData.name+","+respondData.position.latitude+","+respondData.position.longitude+","+respondData.userId+")";
+        String sql2="insert into greenhouse values ("+uuid.toString()+","+respondData.name+","+respondData.position.latitude+","+respondData.position.longitude+","+respondData.userId+")";
         int result1=jdbcTemplate.update(sql2);
+        return uuid.toString();
     }
 
 }
