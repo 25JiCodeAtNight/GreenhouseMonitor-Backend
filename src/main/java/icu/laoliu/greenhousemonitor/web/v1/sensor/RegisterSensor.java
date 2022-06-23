@@ -4,17 +4,20 @@ import com.google.gson.Gson;
 import icu.laoliu.greenhousemonitor.DB.DataBase;
 import icu.laoliu.greenhousemonitor.web.v1.sensor.data.RegisterRequestData;
 import icu.laoliu.greenhousemonitor.web.v1.sensor.data.RegisterRespondData;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
 @RestController
-public class register {
+public class RegisterSensor {
     public UUID uuid = new UUID(20, 1);
     @GetMapping("v1/sensor/register")
     public void receive(@RequestBody RegisterRequestData registerRequestData) {
+        RegisterRespondData
         DataBase dataBase = new DataBase();
         int key = 0;
         while (key == 0) {

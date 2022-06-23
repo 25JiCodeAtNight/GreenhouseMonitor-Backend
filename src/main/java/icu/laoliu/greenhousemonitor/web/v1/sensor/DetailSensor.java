@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class detail {
+public class DetailSensor {
     @GetMapping("v1/sensor/detail")
     public String index(String sensorid) {
-        // 查询数据库，获得对应大传感器信息
+        // 查询数据库，获得对应传感器信息
         DataBase dataBase = new DataBase();
         dataBase.setSQLString("SELECT greenhouse_id FROM sensor WHERE sensor_id=" + sensorid);
         ResultSet resultSet = dataBase.haveReturnExecute();
