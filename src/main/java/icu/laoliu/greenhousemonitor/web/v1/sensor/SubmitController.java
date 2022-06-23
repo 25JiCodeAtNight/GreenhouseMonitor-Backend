@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SubmitController {
-    @GetMapping("/v1/sensor/submit")
+    @GetMapping("v1/sensor/submit")
     public void index(String sensorid, float humidity, float temperature) {
         System.out.println("SensorID:" + sensorid + "; Humidity:" + humidity + "; Temperature:" + temperature);
     }
