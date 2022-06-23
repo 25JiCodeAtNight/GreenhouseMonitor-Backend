@@ -53,7 +53,6 @@ public class RegisterGreenhouse {
 
         String sql2="insert into greenhouse values ("+uuid+","+respondData.name+","+respondData.position.latitude+","+respondData.position.longitude+","+respondData.userId+")";
         int result1=jdbcTemplate.update(sql2);
-
     }
 
 }

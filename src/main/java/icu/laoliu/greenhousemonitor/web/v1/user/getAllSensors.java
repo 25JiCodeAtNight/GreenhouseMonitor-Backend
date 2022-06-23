@@ -20,35 +20,27 @@ public class getAllSensors {
     @Autowired
     JdbcTemplate jdbcTemplate;
     String sql;
+
     @GetMapping("/v1/user/getAllSensors")
-    public String Send(){
+    public String Send() {
 //        GetSRespond respond=new GetSRespond();
 //        DataBase dataBase =new DataBase();
 //        dataBase.setSQLString("SELECT name,sensor_id FROM user,greenhouse,sensor WHERE user.user_id=greenhouse.user_id AND greenhouse.greenhouse_id=sensor.greenhouse_id");
 //        ResultSet resultSet= dataBase.haveReturnExecute();
-//        while(true){
-//            try {
-//                if (!resultSet.next()) break;
-//                respond.add_Record(resultSet.getString(1),resultSet.getString(2));
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//
-//        }
+
         sql = "SELECT name,sensor_id FROM user,greenhouse,sensor WHERE user.user_id=greenhouse.user_id AND greenhouse.greenhouse_id=sensor.greenhouse_id";
         List<Map<String, Object>> res = jdbcTemplate.queryForList(sql);
-        GetSRespond respond=new GetSRespond();
-        respond.responds=new GetSRecord[res.size()];
-        for(int i = 0; i != res.size(); i++){
-
-            
+        GetSRespond respond = new GetSRespond();
+        respond.responds = new GetSRecord[res.size()];
+        for (int i = 0; i != res.size(); i++) {
+            GetSRecord tmp = new GetSRecord();
+            tmp.sensorID = (String) res.get(i).get("sensor_id");
+            tmp.name = (String) res.get(i).get("name");
+            respond.responds[i] = tmp;
         }
 
-
-        String dataJson = new Gson().toJson(respond.turn());
+        String dataJson = new Gson().toJson(respond);
         return dataJson;
 
     }
-
-
 }
