@@ -16,20 +16,15 @@ public class greenhouseCancel {
     JdbcTemplate jdbcTemplate;
     String sql;
 
-    @GetMapping("v1/greenhouse/cancel")
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public void index(@RequestBody String cancelRequestData, HttpServletResponse response) throws IOException {
-
+    @PostMapping("v1/greenhouse/cancel")
+    public void index(@RequestBody String cancelRequestData) throws IOException {
         CancelRequestData cancelRequestData1 = new Gson().fromJson(cancelRequestData, CancelRequestData.class);
-        sql = "SELECT * FROM greenhouse WHERE greenhouse_id=" + cancelRequestData1.greenhouseID + " AND user_id=" + cancelRequestData1.userID;
-        Map<String, Object> result = jdbcTemplate.queryForMap(sql);
-        if (result.isEmpty()) {
-            response.setStatus(400);
-            response.getWriter().append("您删除的不是您的大棚");
-        }else{
-            sql = "DELETE FROM greenhouse WHERE greenhouse_id=" + cancelRequestData1.greenhouseID + " AND user_id=" + cancelRequestData1.userID;
+        // sql = "SELECT * FROM greenhouse WHERE greenhouse_id=" + cancelRequestData1.greenhouseID + " AND user_id=" + cancelRequestData1.userID;
+        // Map<String, Object> result = jdbcTemplate.queryForMap(sql);
+        //if (!result.isEmpty()) {
+            sql = "DELETE FROM greenhouse WHERE greenhouse_id=" + "'" + cancelRequestData1.greenhouseID + "'" + " AND user_id=" + "'" + cancelRequestData1.userID + "'";
             jdbcTemplate.update(sql);
-        }
+        //}
 
     }
 }
