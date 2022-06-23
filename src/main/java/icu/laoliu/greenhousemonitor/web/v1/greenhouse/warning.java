@@ -14,9 +14,9 @@ import java.sql.SQLException;
 @RestController
 public class warning {
     @GetMapping("v1/greenhouse/warning")
-    public String index(String greenhouseID) {
+    public String index(String greenhouseid) {
         DataBase dataBase = new DataBase();
-        dataBase.setSQLString("SELECT latitude,longitude FROM greenhouse WHERE greenhouse_id=" + greenhouseID);
+        dataBase.setSQLString("SELECT latitude,longitude FROM greenhouse WHERE greenhouse_id=" + greenhouseid);
         ResultSet resultSet = dataBase.haveReturnExecute();
         float latitude = 0, longitude = 0;
         try {

@@ -12,10 +12,10 @@ import java.sql.SQLException;
 
 public class detail {
     @GetMapping("v1/sensor/detail")
-    public String index(String sensorID) {
+    public String index(String sensorid) {
         // 查询数据库，获得对应大传感器信息
         DataBase dataBase = new DataBase();
-        dataBase.setSQLString("SELECT greenhouse_id FROM sensor WHERE sensor_id=" + sensorID);
+        dataBase.setSQLString("SELECT greenhouse_id FROM sensor WHERE sensor_id=" + sensorid);
         ResultSet resultSet = dataBase.haveReturnExecute();
         float latitude = 0, longitude = 0;
         String greenhouse_id = null;

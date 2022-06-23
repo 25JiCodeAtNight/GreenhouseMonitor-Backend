@@ -14,10 +14,10 @@ import java.sql.SQLException;
 @RestController
 public class detail {
     @GetMapping("v1/greenhouse/detail")
-    public String index(String greenhouseID) {
+    public String index(String greenhouseid) {
         // 查询数据库，获得对应大棚的信息
         DataBase dataBase = new DataBase();
-        dataBase.setSQLString("SELECT latitude,longitude,greenhouse_name FROM greenhouse WHERE greenhouse_id=" + greenhouseID);
+        dataBase.setSQLString("SELECT latitude,longitude,greenhouse_name FROM greenhouse WHERE greenhouse_id=" + greenhouseid);
         ResultSet resultSet = dataBase.haveReturnExecute();
         float latitude = 0, longitude = 0;
         String greenhouse_name = null;
