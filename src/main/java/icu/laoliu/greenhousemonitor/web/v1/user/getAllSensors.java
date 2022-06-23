@@ -28,7 +28,7 @@ public class getAllSensors {
 //        dataBase.setSQLString("SELECT name,sensor_id FROM user,greenhouse,sensor WHERE user.user_id=greenhouse.user_id AND greenhouse.greenhouse_id=sensor.greenhouse_id");
 //        ResultSet resultSet= dataBase.haveReturnExecute();
 
-        sql = "SELECT name,sensor_id FROM user,greenhouse,sensor WHERE user.user_id=greenhouse.user_id AND greenhouse.greenhouse_id=sensor.greenhouse_id";
+        sql = "SELECT user.name,sensor_id FROM user,greenhouse,sensor WHERE user.user_id=greenhouse.user_id AND greenhouse.greenhouse_id=sensor.greenhouse_id";
         List<Map<String, Object>> res = jdbcTemplate.queryForList(sql);
         GetSRespond respond = new GetSRespond();
         respond.responds = new GetSRecord[res.size()];
