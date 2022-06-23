@@ -18,7 +18,7 @@ public class sensorCancel {
     JdbcTemplate jdbcTemplate;
     String sql;
 
-    @PostMapping("v1/sensor/cancel")
+    @PostMapping("/v1/sensor/cancel")
     public void index(@RequestBody String reqData) throws IOException {
         CancelRequestData cancelRequestData1 = new Gson().fromJson(reqData, CancelRequestData.class);
         // Not good but...

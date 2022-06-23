@@ -19,7 +19,7 @@ public class sensorRegister {
     JdbcTemplate jdbcTemplate;
     String sql;
 
-    @GetMapping("v1/sensor/sensorRegister")
+    @GetMapping("/v1/sensor/sensorRegister")
     public String index(@RequestBody String registerRequestData) {
         RegisterRequestData registerRequestData1 = new Gson().fromJson(registerRequestData, RegisterRequestData.class);
         int key = 0;

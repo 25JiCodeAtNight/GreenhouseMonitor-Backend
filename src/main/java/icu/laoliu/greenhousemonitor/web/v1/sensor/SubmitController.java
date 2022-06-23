@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 
 @RestController
 public class SubmitController {
-    @GetMapping("v1/sensor/submit")
+    @GetMapping("/v1/sensor/submit")
     public void index(String sensorid, float humidity, float temperature) {
         Timestamp time = new Timestamp(new Date().getTime());
         System.out.println("SensorID:" + sensorid + "; Humidity:" + humidity + "; Temperature:" + temperature + "; time:" + time);
