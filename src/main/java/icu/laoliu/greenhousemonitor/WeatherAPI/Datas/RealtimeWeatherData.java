@@ -9,7 +9,7 @@ public class RealtimeWeatherData {
     public int code;
     public String updateTime;
     public String fxLink;
-    public Now now;
+    public Now now = new Now();
     public Refer refer;
 
     public class Now {
