@@ -10,49 +10,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 import java.util.UUID;
 
 @RestController
 public class sensorRegister {
-    public UUID uuid = new UUID(20, 1);
     @Autowired
     JdbcTemplate jdbcTemplate;
     String sql;
 
-    @GetMapping("v1/sensor/register")
-    public void receive(@RequestBody String registerRequestData) {
+    @GetMapping("v1/sensor/sensorRegister")
+    public String index(@RequestBody String registerRequestData) {
         RegisterRequestData registerRequestData1 = new Gson().fromJson(registerRequestData, RegisterRequestData.class);
         int key = 0;
+        String uuid=UUID.randomUUID().toString().replaceAll("-","");
         while (key == 0) {
-            sql = "select sensor_id from sensor";
+            sql = "select * from sensor";
             List<Map<String, Object>> result = jdbcTemplate.queryForList(sql);
-            while (true) {
-                    ListIterator listIterator = result.listIterator();
-                    if (!listIterator.hasNext()) {
+                for(int i=0;i<result.size();i++)
+                {
+                    String s1=(String) result.get(i).get("sensor_id");
+                    if(s1.equals(uuid))
+                    {
+                        uuid=UUID.randomUUID().toString().replaceAll("-","");
+                        key=0;
                         break;
                     }
-
-                    String s1 = (String) listIterator.next();
-                    if (uuid.equals(s1)) {
-                        UUID temp = new UUID(20, 1);
-                        uuid = temp;
-                        key = 0;
-                        break;
-                    } else {
-                        key = 1;
+                    else
+                    {
+                        key=1;
                     }
-            }
+                }
         }
-        sql = "insert into sensor values (" + uuid + "," + registerRequestData1.name + "," + registerRequestData1.greenhouseID + ")";
+        sql = "insert into sensor values ('" + uuid + "','" + registerRequestData1.name + "'," + registerRequestData1.greenhouseID + ")";
         jdbcTemplate.update(sql);
-    }
 
-    @GetMapping("v1/sensor/register")
-    public String send() {
         RegisterRespondData registerRespondData = new RegisterRespondData();
-        registerRespondData.sensorID = uuid.toString();
+        registerRespondData.sensorID = uuid;
         String dataJson = new Gson().toJson(registerRespondData);
         return dataJson;
     }
