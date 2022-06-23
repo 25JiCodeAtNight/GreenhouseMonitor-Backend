@@ -40,6 +40,7 @@ public class greenhouseStatus {
         statusRespondData.humidity = humitmp;
         statusRespondData.temp = temptmp;
         statusRespondData.stat = stattmp;
+        statusRespondData.greenhouseID = greenhouseid;
 
         String dataJson = new Gson().toJson(statusRespondData);
         return dataJson;

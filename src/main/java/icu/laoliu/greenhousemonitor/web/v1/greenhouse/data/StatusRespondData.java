@@ -5,4 +5,5 @@ public class StatusRespondData {
     public float temp;
     public float humidity;
     public String stat;
+    public String greenhouseID;
 }
