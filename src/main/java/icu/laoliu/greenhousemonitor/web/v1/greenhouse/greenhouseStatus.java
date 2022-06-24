@@ -20,7 +20,7 @@ public class greenhouseStatus {
     @GetMapping("v1/greenhouse/status")
     public String index(String greenhouseid) {
         // 查询数据库，获得对应大棚的信息
-        sql = "SELECT latitude,longitude,greenhouse_name FROM greenhouse WHERE greenhouse_id=" + greenhouseid;
+        sql = "SELECT latitude,longitude,greenhouse_name FROM greenhouse WHERE greenhouse_id='" + greenhouseid + "'";
         Map<String, Object> result = jdbcTemplate.queryForMap(sql);
         float latitude = 0, longitude = 0;
         String greenhouse_name = null;
