@@ -21,18 +21,16 @@ public class sensorDetail {
     public String index(String greenhouseid) {
         // 查询数据库，获得对应传感器信息
         sql = "SELECT sensor_record.temp,sensor_record.humidity,sensor_record.time FROM greenhouse, sensor, sensor_record WHERE greenhouse.greenhouse_id=sensor.greenhouse_id AND sensor.sensor_id=sensor_record.sensor_id AND greenhouse.greenhouse_id=" + "'" + greenhouseid + "'";
-        List<Map<String, Object>> result1 = jdbcTemplate.queryForList(sql);
-        Map<String, Object> result2 = jdbcTemplate.queryForMap(sql);
+        List<Map<String, Object>> result = jdbcTemplate.queryForList(sql);
         Timestamp timetmp;
         float temptmp;
         float humitmp;
-        timetmp = (Timestamp) result2.get("time");
-        temptmp = (float) result2.get("temp");
-        humitmp = (float) result2.get("humidity");
-
         DetailRespondData respondData = new DetailRespondData();
-        respondData.details = new DetailRespondData.Detail[result1.size()];
-        for (int i = 0; i < result1.size(); i++) {
+        respondData.details = new DetailRespondData.Detail[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            timetmp = (Timestamp) result.get(i).get("time");
+            temptmp = (float) result.get(i).get("temp");
+            humitmp = (float) result.get(i).get("humidity");
             respondData.details[i] = respondData.new Detail();
             respondData.details[i].humi = humitmp;
             respondData.details[i].temp = temptmp;

@@ -5,7 +5,7 @@ import icu.laoliu.greenhousemonitor.web.v1.sensor.data.RegisterRequestData;
 import icu.laoliu.greenhousemonitor.web.v1.sensor.data.RegisterRespondData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +19,7 @@ public class sensorRegister {
     JdbcTemplate jdbcTemplate;
     String sql;
 
-    @GetMapping("/v1/sensor/sensorRegister")
+    @PostMapping("/v1/sensor/sensorRegister")
     public String index(@RequestBody String registerRequestData) {
         RegisterRequestData registerRequestData1 = new Gson().fromJson(registerRequestData, RegisterRequestData.class);
         int key = 0;
@@ -42,7 +42,7 @@ public class sensorRegister {
                     }
                 }
         }
-        sql = "insert into sensor values ('" + uuid + "','" + registerRequestData1.name + "'," + registerRequestData1.greenhouseID + ")";
+        sql = "insert into sensor values ('" + uuid + "','" + registerRequestData1.name + "','" + registerRequestData1.greenhouseID + "')";
         jdbcTemplate.update(sql);
 
         RegisterRespondData registerRespondData = new RegisterRespondData();
